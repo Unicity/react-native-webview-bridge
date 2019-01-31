@@ -12,7 +12,6 @@
 
 #import <React/RCTViewManager.h>
 #import <React/RCTUIManager.h>
-// #import <React/RCTBridge.h>   // in forked https://github.com/lefnire/react-native-webview-bridge
 
 
 @interface RCTWebViewBridgeManager : RCTViewManager
