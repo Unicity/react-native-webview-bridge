@@ -11,20 +11,36 @@ import java.util.Arrays;
 import java.util.List;
 
 public class WebViewBridgePackage implements ReactPackage {
+    private WebViewBridgeManager manager;
+    private WebViewBridgeModule module;
+
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactApplicationContext) {
-        return new ArrayList<>();
+        List<NativeModule> modules = new ArrayList<>();
+        module = new WebViewBridgeModule(reactApplicationContext);
+        module.setPackage(this);
+        modules.add(module);
+        return modules;
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactApplicationContext) {
-        return Arrays.<ViewManager>asList(
-                new WebViewBridgeManager()
-        );
+        manager = new WebViewBridgeManager();
+        manager.setPackage(this);
+        return Arrays.<ViewManager>asList(manager);
     }
 
-    @Override
+
     public List<Class<? extends JavaScriptModule>> createJSModules() {
         return Arrays.asList();
     }
+
+     public WebViewBridgeManager getManager(){
+        return manager;
+    }
+
+    public WebViewBridgeModule getModule(){
+        return module;
+    }
 }
+
