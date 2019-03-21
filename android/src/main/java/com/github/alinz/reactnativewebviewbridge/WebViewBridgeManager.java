@@ -63,15 +63,22 @@ public class WebViewBridgeManager extends ReactWebViewManager {
             public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
                 module.setUploadMessage(uploadMsg);
                 module.openFileChooserView();
-
             }
 
             public boolean onJsConfirm (WebView view, String url, String message, JsResult result){
-                return true;
+                // return true;
+                return super.onJsConfirm(view, url, message, result);
             }
 
             public boolean onJsPrompt (WebView view, String url, String message, String defaultValue, JsPromptResult result){
-                return true;
+                // return true;
+                return super.onJsPrompt(view, url, message, defaultValue, result);
+            }
+
+            @Override
+            public boolean onJsAlert(WebView view, String url, String message,JsResult result) {                
+                // return true;
+                return super.onJsAlert(view, url, message, result);
             }
 
             // For Android < 3.0
