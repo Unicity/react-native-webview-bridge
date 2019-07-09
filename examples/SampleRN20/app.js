@@ -8,9 +8,9 @@ var React = require('react-native');
 var {
   StyleSheet,
   Text,
-  View,
-  WebView
+  View
 } = React;
+var WebView = require('react-native-webview')
 var createReactClass = require('create-react-class');
 
 var WebViewBridge = require('react-native-webview-bridge');
@@ -18,13 +18,11 @@ var WebViewBridge = require('react-native-webview-bridge');
 const injectScript = `
   (function () {
     if (WebViewBridge) {
-
       WebViewBridge.onMessage = function (message) {
         if (message === "hello from react-native") {
           WebViewBridge.send("got the message inside webview");
         }
       };
-
       WebViewBridge.send("hello from webview");
     }
   }());
@@ -70,4 +68,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
